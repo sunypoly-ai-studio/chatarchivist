@@ -11,8 +11,8 @@
             margin: 0;
             padding: 20px;
             display: flex; /* Add display flex to the body */
-            justify-content: center; /* Center content horizontally */
-            align-items: flex-start; /* Align items at the top */
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center content horizontally */
         }
 
         h1, h2 {
@@ -27,12 +27,19 @@
         
         .container {
             display: flex; /* Use flexbox for the containers */
-            flex-direction: column; /* Make links vertical */
-            align-items: center; /* Center links horizontally */
-            margin: 0 20px; /* Add margin between the two containers */
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center content horizontally */
+            margin: 20px; /* Add margin for spacing */
         }
 
-        a { 
+        .links-container {
+            display: flex; /* Use flexbox for the links */
+            flex-direction: column; /* Stack links vertically */
+            align-items: center; /* Center links horizontally */
+            margin: 0 20px; /* Add margin between the two link containers */
+        }
+
+        .links-container a { 
             display: block;         /* Take up full width of container */
             width: 200px;          /* Set a fixed width for better visual consistency */
             padding: 15px;        
@@ -45,30 +52,43 @@
             text-align: center;    /* Center text within links */
         }
 
-        a:hover {
+        .links-container a:hover {
             background-color: #e0e0e0; 
+        }
+
+        /* Adjust layout for larger screens */
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row; /* Display containers side by side */
+            }
+
+            .links-container {
+                margin: 20px; /* Add margin between the two link containers */
+            }
         }
     </style>
 </head>
 <body>
-    <h1>ChatArchivist</h1>
-
-    <p id="bio">ChatArchivist is your personal AI chat history hub. We securely store and organize your conversations, allowing you to revisit, learn from, and gain insights from your past interactions.</p>
-
-    <div class="container"> <!-- Container for the first set of links -->
-        <h2>View Archived Chats</h2>
-        <div id="links-container">
-            <a href="https://sunypoly-ai-studio.github.io/chatarchivist/chatgpt-conversations.html">ChatArchivist-v0.1</a>
-            <a href="https://sunypoly-ai-studio.github.io/chatarchivist/chatgpt-conversations-v0dot2.html">ChatArchivist-v0.2</a>
-            <a href="https://sunypoly-ai-studio.github.io/chatarchivist/superpower-chatgpt-archivist.html">ChatArchivist-Superpower</a>
-            <a href="https://sunypoly-ai-studio.github.io/chatarchivist/chatarchivist-zero-dot-3.html">ChatArchivist-Superpower-v2.0</a>
-        </div>
+    <div class="container">
+        <center></center><h1>ChatArchivist</h1></center>
     </div>
 
-    <div class="container"> <!-- Container for the second set of links -->
-        <h2>Sprint Calendar</h2>
-        <div id="links-container">
-            <a href="https://sunypoly-ai-studio.github.io/chatarchivist/sprint-calendar/2-week-sprint-may31-june14.html">May 31st - June 14th</a>
+    <div class="container"> <!-- Container for both link sections -->
+        <div class="links-container"> <!-- Container for the first set of links -->
+            <h2>View Archived Chats</h2>
+            <div id="links-container">
+                <a href="https://sunypoly-ai-studio.github.io/chatarchivist/chatgpt-conversations.html">ChatArchivist-v0.1</a>
+                <a href="https://sunypoly-ai-studio.github.io/chatarchivist/chatgpt-conversations-v0dot2.html">ChatArchivist-v0.2</a>
+                <a href="https://sunypoly-ai-studio.github.io/chatarchivist/superpower-chatgpt-archivist.html">ChatArchivist-Superpower</a>
+                <a href="https://sunypoly-ai-studio.github.io/chatarchivist/chatarchivist-zero-dot-3.html">ChatArchivist-Superpower-v2.0</a>
+            </div>
+        </div>
+
+        <div class="links-container"> <!-- Container for the second set of links -->
+            <h2>Sprint Calendar</h2>
+            <div id="links-container">
+                <a href="https://sunypoly-ai-studio.github.io/chatarchivist/sprint-calendar/2-week-sprint-may31-june14.html">May 31st - June 14th</a>
+            </div>
         </div>
     </div>
 </body>
