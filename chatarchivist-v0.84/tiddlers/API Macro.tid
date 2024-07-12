@@ -1,0 +1,148 @@
+created: 20240708143516421
+modified: 20240712191636364
+tags: $:/tags/Macro
+title: API Macro
+type: text/vnd.tiddlywiki
+
+<!-- Adapted from https://github.com/tiddly-gittly/ai-actionstring/blob/c89738e68a28da96f27e2dac0cd2fb131582eec2/src/ai-actionstring/ActionStrings/Qwen.tid -->
+
+
+\procedure openaiTextGenerate(promptValue)
+
+  \procedure completion()
+    \import [subfilter{$:/core/config/GlobalImportFilter}]
+    <$action-log msg="In completion"/>
+    <!-- Success -->
+    <$list filter="[<status>compare:number:gteq[200]compare:number:lteq[299]]" variable="ignore">
+      <$action-log msg="Generated text" text={{{ [<data>jsonget[choices],[0],[message]] }}}/>
+      <!-- Save the generated text -->
+
+<$vars conv_id={{API Tracker!!conv_id_count}} msg_id={{API Tracker!!msg_id_count}} date=<<now YYYY0MM0DD0hh0mm0ss0XXX>>>
+<$set name="tzd" value={{{ [<date>add[40000000]] }}}>
+<$action-createtiddler 
+$basetitle=<<msg_id>>
+text={{{ [<data>jsonget[choices],[0],[message]] }}}
+conversation_id=<<conv_id>>
+message_id=<<msg_id>>
+author="assistant" 
+timestamp=<<tzd>>
+tags="chatgptmessage"/>
+<$action-setfield $tiddler="API Tracker" msg_id_count={{{[<msg_id>add[1]]}}}/>
+</$set>
+</$vars>
+
+    </$list>
+    <!-- Failure -->
+    <$list filter="[<status>compare:number:lt[200]] [<status>compare:number:gt[299]]" variable="ignore">
+      <$action-log msg="API request failed" status=<<status>> statusText=<<statusText>> error=<<error>>/>
+    </$list>
+  \end completion
+
+  \procedure request-url()
+  https://api.openai.com/v1/chat/completions
+  \end request-url
+
+  \procedure request-body()
+   {
+    "model": "gpt-4o",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Before every chat, do some research on TiddlyWiki's format. Give me your response in TiddlyWiki format. Dont try to make your own tiddler. In the case of a numbered list, bullet point, italics, titles, or anything of that manor, use TiddlyWiki's format. Anything else, just use words. Only use backticks when you are writing code. Also, never reference that you are using TiddlyWiki format, just do it. The goal is to have your responses look normal inside of a tiddler. When you are done writing, double check the format of your response to make sure it will appear normal inside of a tiddler. Make sure everything is spaced properly and extremely easy to read. Get rid of any unnecessary markings that will not be converted in TiddlyWiki's format. Also get rid of any redundant formatting."
+      },
+      {
+        "role": "user",
+        "content": "<<promptValue>>"
+      }
+    ]
+  }
+  \end request-body
+
+  <$wikify name="url" text=<<request-url>>>
+    <$wikify name="body" text=<<request-body>>>
+      <$let apikey={{$:/chatarchivist/OpenAIAPI/apiKey}}>
+        <$action-sendmessage
+          $message="tm-http-request"
+          url=<<url>>
+          method="POST"
+          header-Content-Type="application/json"
+          header-Authorization=`Bearer $(apikey)$`
+          body=<<body>>
+          bind-status="$:/chatarchivist/OpenAIAPI/status"
+          bind-progress="$:/chatarchivist/OpenAIAPI/progress"
+          oncompletion=<<completion>>
+        />
+      </$let>
+    </$wikify>
+  </$wikify>
+
+\end openaiTextGenerate
+
+
+\procedure archiveChat(promptValue)
+
+  \procedure completion()
+    \import [subfilter{$:/core/config/GlobalImportFilter}]
+    <$action-log msg="In completion"/>
+    <!-- Success -->
+    <$list filter="[<status>compare:number:gteq[200]compare:number:lteq[299]]" variable="ignore">
+      <$action-log msg="Generated text" text={{{ [<data>jsonget[choices],[0],[message]] }}}/>
+      <!-- Save the generated text -->
+
+<$vars conv_id={{API Tracker!!conv_id_count}}>
+<$action-setfield $tiddler="API Tracker" generated_title={{{ [<data>jsonget[choices],[0],[message]] }}}/>
+<$action-createtiddler 
+$basetitle=<<conv_id>>
+conversation_title={{API Tracker!!generated_title}}
+conversation_index="1"
+chatgptelement="conversation"
+tags="chatgptconversation"/>
+<$action-setfield $tiddler="API Tracker" conv_id_count={{{[<conv_id>add[1]]}}} text="" generated_title=""/>
+</$vars>
+
+    </$list>
+    <!-- Failure -->
+    <$list filter="[<status>compare:number:lt[200]] [<status>compare:number:gt[299]]" variable="ignore">
+      <$action-log msg="API request failed" status=<<status>> statusText=<<statusText>> error=<<error>>/>
+    </$list>
+  \end completion
+
+  \procedure request-url()
+  https://api.openai.com/v1/chat/completions
+  \end request-url
+
+  \procedure request-body()
+   {
+    "model": "gpt-4o",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Your only job is to summarize the prompt in 6 words or less to create a title for it. Your response should be stylized as a title."
+      },
+      {
+        "role": "user",
+        "content": "<<promptValue>>"
+      }
+    ]
+  }
+  \end request-body
+
+  <$wikify name="url" text=<<request-url>>>
+    <$wikify name="body" text=<<request-body>>>
+      <$let apikey={{$:/chatarchivist/OpenAIAPI/apiKey}}>
+        <$action-sendmessage
+          $message="tm-http-request"
+          url=<<url>>
+          method="POST"
+          header-Content-Type="application/json"
+          header-Authorization=`Bearer $(apikey)$`
+          body=<<body>>
+          bind-status="$:/chatarchivist/OpenAIAPI/status"
+          bind-progress="$:/chatarchivist/OpenAIAPI/progress"
+          oncompletion=<<completion>>
+        />
+      </$let>
+    </$wikify>
+  </$wikify>
+
+\end archiveChat

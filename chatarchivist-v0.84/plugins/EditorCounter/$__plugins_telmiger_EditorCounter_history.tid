@@ -1,0 +1,16 @@
+created: 20231229092559063
+creator: Thomas Elmiger
+modified: 20231229094026467
+modifier: Thomas Elmiger
+tags: 
+title: $:/plugins/telmiger/EditorCounter/history
+type: text/vnd.tiddlywiki
+
+''Change Log''
+
+* ''1.0.0'' -- 2023-12-29 -- update
+** extended user settings (colours and limits)
+** license added
+** history added
+* ''0.6.6'' -- 2020-05-25 -- minor update
+* ''0.6.5'' -- 2017-12-18 -- initial release (?)

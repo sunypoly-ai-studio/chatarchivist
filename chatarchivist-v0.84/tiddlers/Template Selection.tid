@@ -1,0 +1,10 @@
+created: 20240606144323231
+modified: 20240606190324718
+tags: 
+title: Template Selection
+
+<$select tiddler="User Choice" default="option1">
+  <option value="Option one">Option 1</option>
+  <option value="Option two">Option 2</option>
+</$select>
+

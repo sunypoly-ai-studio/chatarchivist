@@ -1,0 +1,5 @@
+list-before: $:/config/ViewTemplateBodyFilters/import
+tags: $:/tags/ViewTemplateBodyFilterXX
+title: $:/plugins/wikilabs/bundler/ViewTemplateBodyFilters/import
+
+[field:plugin-type[import]then[$:/plugins/wikilabs/bundler/ui/ViewTemplate/body/import]]

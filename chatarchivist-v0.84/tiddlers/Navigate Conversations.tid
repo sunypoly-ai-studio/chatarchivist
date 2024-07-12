@@ -1,0 +1,49 @@
+chatarchivist: navigation
+created: 20240314032758535
+modified: 20240711145740610
+tags: TableOfContents
+title: Navigate Conversations
+type: text/vnd.tiddlywiki
+
+For instructions on how to use ChatArchivist, visit
+<div class="navigation_button">
+<$button tooltip="Get Started with ChatArchivist">
+Get Started with ChatArchivist
+<$action-navigate $to="Get Started with ChatArchivist"/>
+</$button>
+<br> <br>
+
+To change the conversation layout or turn annotations on/off, visit 
+<div class="navigation_button">
+<$button tooltip="Settings">
+Settings
+<$action-navigate $to="Settings"/>
+</$button>
+<br> <br>
+
+<div class="tc-file-input-wrapper">
+To import a conversation, click 
+<$button tooltip={{$:/language/Buttons/Import/Hint}} aria-label={{$:/language/Buttons/Import/Caption}} class=<<tv-config-toolbar-class>>>
+here
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/import-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/Import/Caption}}/>
+</span>
+</$list>
+</$button>
+<$browse tooltip={{$:/language/Buttons/Import/Hint}}/>
+</div>
+<br>
+<br>
+</div><hr><br>
+Right now, there are <$count filter="[tag[chatgptconversation]]"/> conversations archived, with a total of <$count filter=[author[user]]/> user prompts, and <$count filter=[author[assistant]]/> assistant responses.
+<br><br>
+{{Conversation Sort}}
+
+^^For info see [[ChatArchivist Documentation]]^^
+
+
+
