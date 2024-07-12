@@ -1,0 +1,54 @@
+created: 20240501185816359
+modified: 20240627151623051
+tags: TableOfContents
+title: Get Started with ChatArchivist
+type: text/vnd.tiddlywiki
+
+To import your chats from Open AI:
+
+# Export your ChatGPT conversations by following the instructions shown [[here.|https://www.google.com/search?q=how+to+export+conversations+in+open+ai+chatgpt&oq=how+to+export+conversations+in+open+ai+chatgpt&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIRgKGKAB0gEINzA1NmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8]] OpenAI will send you an email containing your conversations. Download these to your computer
+
+# Copy this [[python script|Python Script to Convert Conversations to Tiddlers Using JSON From OpenAI]] into your clipboard <$macrocall $name="copy-to-clipboard" src={{Python Script to Convert Conversations to Tiddlers Using JSON From OpenAI}}/>
+
+# Paste into file editor. Save file as ``chat2json.py`` in the same directory as conversations.json.
+
+# Run the script to generate tiddlers-for-import.json. ``/usr/local/bin/python3 chat2json.py conversations.json tiddlers2import.json``
+
+#  Import tiddlers2import.json into [[this tiddlywiki]] {{$:/core/ui/Buttons/import}} to create one tiddler for each prompt, and one tiddler for each response, and one tiddler for each conversation
+
+To import your chats using the ChatGPT Superpower extension:
+
+[[Getting started with and using Superpower|https://www.toolify.ai/ai-news/stepbystep-guide-exporting-chatgpt-conversations-with-superpower-extension-533022]]
+
+ #The link above will tach the basics about Superpower. All that is needed to know is how to export conversations, so no need to read the whoke thing. Once you learn how, export your conversation(s) into a JSON file
+
+#Copy this [[python script|Python Script to Convert Conversations to Tiddlers Using JSON From Superpower Extension]] into your clipboard <$macrocall $name="copy-to-clipboard" src={{Python Script to Convert Conversations to Tiddlers Using JSON From Superpower Extension}}/>
+
+# Save file as ``chat2json.py`` in the same directory as conversations.json
+
+# Run the script to generate tiddlers-for-import.json. ``/usr/local/bin/python3 chat2json.py conversations.json tiddlers2import.json`` If you don't have Python installed on your computer, follow the instructions for downloading it [[here.|https://realpython.com/installing-python/]] 
+
+#  Import tiddlers2import.json into this tiddlywiki {{$:/core/ui/Buttons/import}} to create  one tiddler for each prompt, and one tiddler for each response, and one tiddler for each conversation
+
+To import an image:
+
+Assumptions: you have a properly prepared .json file of tiddlers, created using an json archive created by superpower chatgpt extension, and them modified by a python script from above
+
+# From ChatGPT, download all images from a thread, sequentially named, with suffix of "webp". For example, d001.webp
+
+# Upload using either drag and drop or the import button used to import conversations {{$:/core/ui/Buttons/import}}
+
+# navigate through a conversation thread and use the "associate image" tool to associate an image with a specific message
+
+{{Exporting Messages}}
+
+
+To delete all conversations:
+
+{{Delete current conversations}}
+
+{{Using Annotation}}
+
+[[Features to be Added in Next Version]]
+
+[[ChatArchivist Documentation]]

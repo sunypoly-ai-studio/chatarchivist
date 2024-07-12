@@ -1,0 +1,26 @@
+caption: Search
+created: 20240621182410218
+custom-menu-content: {{$:/plugins/tiddlywiki/menubar/items/search}}
+description: Search
+modified: 20240628190125093
+tags: $:/tags/MenuBar
+title: $:/plugins/tiddlywiki/menubar/items/search
+type: text/vnd.tiddlywiki
+
+<$vars editstate=<<qualify "$:/chatarchivist/state/edittext-text">>>
+
+<$edit-text tiddler="SearchFor" class="tc-popup-handle" placeholder="Search conversations..." focusPopup=<<qualify "$:/chatarchivist/state/edittext-popup">> tag="input"/>
+
+<$reveal state=<<qualify "$:/chatarchivist/state/edittext-popup">> type="popup">
+<div class="tc-popup-handle" style="background-color: #f5f8fc; border: 1px solid black; padding: 8px;">
+<$vars searchfor={{SearchFor!!text}}><br>
+Found <$count filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>]"/> conversations
+with "{{SearchFor!!text}}"
+<hr>
+<$list filter="[tag[chatgptconversation]!prefix[$]search:conversation_title<searchfor>sort[conversation_title]]">
+<$button class="tc-btn-invisible  tc-tiddlylink" tooltip={{!!conversation_title}}>
+<$view field="conversation_title"/>
+<$action-navigate $to={{!!title}}/>
+<$action-setfield $tiddler="transcludeMessage" id={{!!title}} conversation_index="1"/>
+</$button>
+<hr>

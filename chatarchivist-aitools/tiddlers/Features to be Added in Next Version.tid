@@ -1,0 +1,10 @@
+created: 20240614172214814
+modified: 20240614172657420
+tags: 
+title: Features to be Added in Next Version
+
+*Support for multiple chat bots
+*More customization
+*Abstract the JSON conversion away from the user (no more python script)
+*Direct connection between chat bots and ChatArchivist using API
+*Plugin support for other TiddlyWiki users
