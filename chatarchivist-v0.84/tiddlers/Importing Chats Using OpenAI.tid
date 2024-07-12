@@ -1,0 +1,17 @@
+created: 20240621191255854
+modified: 20240627140413183
+tags: 
+title: Importing Chats Using OpenAI
+type: text/vnd.tiddlywiki
+
+!!To import your chats from Open AI:
+
+# Export your ChatGPT conversations by following the instructions shown [[here.|https://www.google.com/search?q=how+to+export+conversations+in+open+ai+chatgpt&oq=how+to+export+conversations+in+open+ai+chatgpt&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIRgKGKAB0gEINzA1NmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8]] OpenAI will send you an email containing your conversations. Download these to your computer
+
+# Copy this [[python script|Python Script to Convert Conversations to Tiddlers Using JSON From OpenAI]] into your clipboard <$macrocall $name="copy-to-clipboard" src={{Python Script to Convert Conversations to Tiddlers Using JSON From OpenAI}}/>
+
+# Paste into file editor. Save file as ``chat2json.py`` in the same directory as conversations.json.
+
+# Run the script to generate tiddlers-for-import.json. ``/usr/local/bin/python3 chat2json.py conversations.json tiddlers2import.json``
+
+#  Import tiddlers2import.json into [[this tiddlywiki]] {{$:/core/ui/Buttons/import}} to create one tiddler for each prompt, and one tiddler for each response, and one tiddler for each conversation

@@ -1,0 +1,3 @@
+module-type: startup
+title: $:/plugins/wikilabs/bundler/th-before-importing.js
+type: application/javascript

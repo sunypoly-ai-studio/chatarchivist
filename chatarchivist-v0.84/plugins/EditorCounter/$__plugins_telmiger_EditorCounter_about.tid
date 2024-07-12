@@ -1,0 +1,6 @@
+created: 20200524222834178
+modified: 20231228231926916
+tags: 
+title: $:/plugins/telmiger/EditorCounter/about
+
+Display counters for words and characters in the editor. In single page wikis save your work while typing text automagically in the background – check the [[plugin settings|$:/plugins/telmiger/EditorCounter/settings]].
