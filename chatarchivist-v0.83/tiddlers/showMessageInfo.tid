@@ -1,0 +1,15 @@
+created: 20240618184255246
+message_info: on
+modified: 20240711145226534
+tags: $:/tags/Macro
+title: showMessageInfo
+type: text/vnd.tiddlywiki
+
+\define showMessageInfo(timestamp, link)
+<$list filter="[title[showMessageInfo]message_info[on]]">
+//Generated <$text text={{{ [[$timestamp$]format:date[DDth mmm YYYY 0hh:0mm:0ss]] }}}/>//
+<br>
+Tokens: 
+<$editor-counter tiddler=$link$ field="text" mode=word/> ||
+<$link to=$link$ tooltip="View Message">View Message</$link>
+\end

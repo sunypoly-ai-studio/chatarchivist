@@ -1,0 +1,22 @@
+created: 20240620184352830
+modified: 20240627153918610
+select_message: on
+tags: $:/tags/Macro
+title: selectMessage
+type: text/vnd.tiddlywiki
+
+\define addMessage()
+<$action-listops $tiddler="$:/chatarchivist/selected-messages" $subfilter="[[$(title)$]]"/>
+\end
+
+\define removeMessage()
+<$action-listops $tiddler="$:/chatarchivist/selected-messages" $subfilter="+[remove[$(title)$]]"/>
+\end
+
+\define selectMessage(title)
+<$vars title=$title$>
+<$list filter="[title[selectMessage]select_message[on]]">
+Select: 
+<$checkbox tiddler=<<title>> tag="selected" checkactions=<<addMessage>> uncheckactions=<<removeMessage>>/>
+<br><br>
+\end

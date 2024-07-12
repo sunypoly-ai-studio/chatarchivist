@@ -1,0 +1,30 @@
+created: 20240603214354849
+modified: 20240628204511376
+tags: $:/tags/Macro
+title: Annotate Button Macro
+type: text/vnd.tiddlywiki
+
+\define annotation-tiddler() $(message_id)$-Annotation
+
+\define annotate(message_id, message_title, conversation_id)
+<$list filter="[title[MenuBar Annotation]Annotation[on]]">
+<$vars message_id=$message_id$ conversation_id=$conversation_id$>
+<$button tooltip="Annotate">
+Create Annotation
+<$action-setfield $tiddler=<<annotation-tiddler>> tags="Annotation" chatarchivist="annotation" message_id=<<message_id>> text={{$message_title$}} annotate_conv_id=<<conversation_id>>/>
+<$action-setfield $tiddler="MenuBar Annotation" edit="true"/>
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<annotation-tiddler>>/>
+</$button>
+<$list filter="[title[MenuBar Annotation]Annotation[on]edit[true]]">
+<$vars message_id=$message_id$ conversation_id=$conversation_id$>
+<$button tooltip="Annotate">
+Edit Annotation
+<$action-setfield $tiddler=<<annotation-tiddler>> tags="Annotation" chatarchivist="annotation" message_id=<<message_id>> annotate_conv_id=<<conversation_id>>/>
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<annotation-tiddler>>/>
+</$button>
+<div class="annotation">
+<$transclude tiddler=<<annotation-tiddler>> mode="block"/>
+</div>
+<hr>
+\end
+

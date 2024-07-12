@@ -1,0 +1,14 @@
+{
+    "created": "20170303231300931",
+    "title": "$:/plugins/telmiger/EditorCounter",
+    "author": "Thomas & Jed",
+    "core-version": ">=5.3.3",
+    "description": "Count words and characters & save automagically",
+    "list": "readme settings history license support",
+    "modified": "20231230161728827",
+    "name": "Editor Counter",
+    "source": "https://tid.li/tw5/plugins.html",
+    "version": "1.0.0",
+    "plugin-type": "plugin",
+    "packaged-by": "Gatha on 29th December 2023, 11:41:02"
+}

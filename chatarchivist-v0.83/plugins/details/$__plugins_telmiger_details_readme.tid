@@ -1,0 +1,15 @@
+created: 20170205212323032
+modified: 20240101144915074
+tags: 
+title: $:/plugins/telmiger/details/readme
+
+! ~DetailsWidget
+
+{{$:/plugins/telmiger/details/about}}
+
+Documentation can be found at http://tid.li/tw5/plugins.html#DetailsWidget
+
+
+!! History
+
+{{$:/plugins/telmiger/details/history}}

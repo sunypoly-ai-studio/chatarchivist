@@ -1,0 +1,12 @@
+Annotation: on
+created: 20240624143442877
+edit: true
+modified: 20240708194814202
+tags: $:/tags/TopRightBar
+title: MenuBar Annotation
+type: text/vnd.tiddlywiki
+
+<$button tooltip="Turn the annotation feature on or off">
+<i class="far fa-edit"/>
+<$action-listops $tiddler="MenuBar Annotation" $field="Annotation" $subfilter="+[toggle[on],[off]]" />
+</$button>

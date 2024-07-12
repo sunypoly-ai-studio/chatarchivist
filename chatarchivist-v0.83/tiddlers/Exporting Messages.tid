@@ -1,0 +1,17 @@
+created: 20240610165538074
+modified: 20240620154721265
+tags: 
+title: Exporting Messages
+
+To export one or many ChatGPT conversations:
+
+#Open conversation you would like to export
+
+#At the top of the conversation, click the export button <$macrocall $name="exportButton" 
+            exportFilter=<<currentTiddler>>
+            lingoBase="$:/language/Buttons/ExportTiddler/" 
+            baseFilename=<<currentTiddler>>/>
+
+#Select desired file format (static HTML is suggested)
+
+#If you wish to change the name of the file, open in your folder, right click and click "rename"

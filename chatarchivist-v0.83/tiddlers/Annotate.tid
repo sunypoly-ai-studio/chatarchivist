@@ -1,0 +1,6 @@
+created: 20240604191859805
+modified: 20240605161232430
+tags: Feature
+title: Annotate
+
+Once the user has opened a conversation, they are able to annotate any message in that conversation by clicking the "Annotate" button and typing their note in the associated tiddler that appears.

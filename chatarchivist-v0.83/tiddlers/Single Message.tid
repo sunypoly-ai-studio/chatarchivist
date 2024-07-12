@@ -1,0 +1,43 @@
+Template: 2
+created: 20240131165435884
+modified: 20240709200840669
+tags: $:/tags/ViewTemplate chatarchivist-template currentTemplate
+title: Single Message
+type: text/vnd.tiddlywiki
+
+<$list filter="[is[current]chatgptelement[conversation]]">
+<$vars conversation_index={{!!conversation_index}} first="1" conversation_title={{!!conversation_title}} tiddler-title={{!!title}}>
+
+<$set name="previous" filter="[<conversation_index>subtract[1]]">
+<$set name="next" filter="[<conversation_index>add[1]]">
+<$set name="last" filter="[conversation_id{!!title}chatgptmessage[]count[]]">
+
+<div class="tiddler-body">
+<div class="conversation-title">
+<h1>{{!!conversation_title}}</h1>
+</div>
+
+<div class="navigation_button">
+<$button tooltip="First">First (#<<first>>)
+<$action-setfield $tiddler="transcludeMessage" conversation_index="1" id={{!!title}}/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+</$button>
+
+<$macrocall $name="previousButton" title={{!!title}} conversation_index={{!!conversation_index}} previous=<<previous>>/>
+<$macrocall $name="ltPreviousButton" title={{!!title}} conversation_index={{!!conversation_index}}/>
+
+Message #<<conversation_index>> of <<last>>
+
+<$macrocall $name="nextButton" title={{!!title}} conversation_index={{!!conversation_index}} next=<<next>> last=<<last>>/>
+<$macrocall $name="gtNextButton" title={{!!title}} conversation_index={{!!conversation_index}} last=<<last>>/>
+
+<$button tooltip="Last">Last (#<<last>>)
+<$action-setfield $tiddler="transcludeMessage" conversation_index=<<last>> id={{!!title}}/>
+<$action-setfield $tiddler=<<currentTiddler>> conversation_index=<<last>>/>
+</$button>
+</div>
+
+<div class="transclusion">
+{{transcludeMessage}}
+</div>
+</div>
