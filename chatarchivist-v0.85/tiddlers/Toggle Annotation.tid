@@ -1,0 +1,17 @@
+created: 20240611164516676
+modified: 20240625194619563
+tags: 
+title: Toggle Annotation
+type: text/vnd.tiddlywiki
+
+!!Annotation On/Off
+
+<$vars annotation_toggle={{MenuBar Annotation!!Annotation}}>
+<div class="navigation_button">
+<$button tooltip="Turn the annotation feature on or off">
+Annotation is currently <<annotation_toggle>>
+<$action-listops $tiddler="MenuBar Annotation" $field="Annotation" $subfilter="+[toggle[on],[off]]" />
+</$button>
+</div>
+
+<hr>

@@ -1,0 +1,27 @@
+created: 20240624183729279
+current_template: full_conversation
+modified: 20240709200840669
+tags: $:/tags/TopRightBar
+title: MenuBar Toggle Template
+type: text/vnd.tiddlywiki
+
+<$button tooltip="Toggle between the Full Conversation and Single Message view templates for your conversations">
+  <i class="far fa-eye"/>
+
+  <$list filter="[tag[chatarchivist-template]]">
+    <$action-setfield tags="chatarchivist-template"/> 
+  </$list>
+
+  <$action-listops $tiddler="MenuBar Toggle Template" $field="current_template" $subfilter="+[toggle[full_conversation],[single_message]]" />
+  <$list filter="[title[MenuBar Toggle Template]current_template[full_conversation]]">
+    <$action-setfield $tiddler="Full Conversation" tags="$:/tags/ViewTemplate chatarchivist-template currentTemplate"/>
+  </$list>
+  <$list filter="[title[MenuBar Toggle Template]current_template[single_message]]">
+    <$action-setfield $tiddler="Single Message" tags="$:/tags/ViewTemplate chatarchivist-template currentTemplate"/>
+  </$list>
+
+  <$action-setfield $tiddler="transcludeMessage" conversation_index="1"/>
+  <$list filter="[tag[chatgptconversation]]">
+    <$action-setfield $tiddler=<<currentTiddler>> conversation_index="1"/>
+  </$list>
+</$button>
