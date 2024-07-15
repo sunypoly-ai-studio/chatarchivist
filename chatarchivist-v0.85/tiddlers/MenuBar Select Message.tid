@@ -1,0 +1,10 @@
+created: 20240624182818071
+modified: 20240624183026562
+tags: $:/tags/TopRightBar
+title: MenuBar Select Message
+type: text/vnd.tiddlywiki
+
+<$button tooltip="Toggle message selection buttons on and off">
+<i class="far fa-check-square"/>
+<$action-listops $tiddler="selectMessage" $field="select_message" $subfilter="+[toggle[on],[off]]" />
+</$button>
