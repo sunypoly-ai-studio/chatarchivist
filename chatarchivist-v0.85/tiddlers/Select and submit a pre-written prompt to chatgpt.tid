@@ -1,0 +1,77 @@
+created: 20240715203943609
+modified: 20240715213353460
+tags: 
+title: Select and submit a pre-written prompt to chatgpt
+type: text/vnd.tiddlywiki
+
+<$vars msg_id={{API Tracker!!msg_id_count}} conv_id={{API Tracker!!conv_id_count}}>
+
+Select a prompt:<br>
+<$select tiddler='$:/prompt'>
+<$list filter='[tag[prompt]]'>
+<option><$view field='title'/></option>
+</$list>
+</$select>
+<$details summary="See the selected prompt" open="no">
+<$tiddler tiddler={{$:/prompt}}>
+<$transclude mode='block'/>
+</$tiddler>
+</$details>
+
+<$button>
+Submit Prompt Above to API
+<$set
+name="prompt-text"
+filter="[title{$:/prompt}get[text]]">
+<$action-setfield 
+$tiddler="$:/promptText" 
+text=<<prompt-text>>
+/>
+</$set>
+</$button>
+
+
+
+
+<hr>
+<$edit-text tiddler="$:/chatarchivist/OpenAIAPI/prompt" tag="textarea" 
+rows="20"
+placeholder={{$:/promptText}}/>
+<$button tooltip="Send message">
+Send
+<$macrocall $name="openaiTextGenerate" promptValue={{$:/chatarchivist/OpenAIAPI/prompt}}/>
+<$action-sendmessage $message="tm-notify" $param="$:/chatarchivist/OpenAIAPI/chatProgressNotify"/>
+<$action-createtiddler  
+$basetitle=<<msg_id>>
+text={{$:/chatarchivist/OpenAIAPI/prompt}}
+conversation_id=<<conv_id>>
+message_id=<<msg_id>>
+author="user" 
+timestamp={{$:/chatarchivist/OpenAIAPI/prompt!!modified}}
+tags="chatgptmessage"/>
+<$action-setfield $tiddler="API Tracker" msg_id_count={{{[<msg_id>add[1]]}}}/>
+<$action-deletefield $tiddler="$:/chatarchivist/OpenAIAPI/prompt" $field="text"/>
+</$button>
+
+<div style="height: 420px; overflow: auto; border: 1px solid #ccc; border-radius: 8px; padding: 10px; position: relative;">
+
+    <$list filter="[tag[chatgptmessage]conversation_id<conv_id>!sort[timestamp]]">
+
+    <%if [{!!author}match[user]]%>
+    <div style="position: relative; width: 50%; margin-left: 50%; box-sizing: border-box; margin-bottom: 10px;">
+        <div style="border-radius: 8px; background-color: #d0e6f7; padding: 6px; margin-top: 10px; border: 1px solid #9CACB9;">
+            ''User''
+            <$transclude $mode="block"/>
+        </div>
+    </div>
+    <%elseif [{!!author}match[assistant]]%>
+    <div style="position: relative; width: 50%; box-sizing: border-box; margin-bottom: 10px;">
+        <div style="border-radius: 8px; background-color: #e2f7d0; padding: 6px; margin-top: 10px; border: 1px solid #A9B99C;">
+            ''ChatGPT''
+            <$transclude $mode="block"/>
+        </div>
+    </div>
+    <%endif%>
+
+    </$list>
+</div>
