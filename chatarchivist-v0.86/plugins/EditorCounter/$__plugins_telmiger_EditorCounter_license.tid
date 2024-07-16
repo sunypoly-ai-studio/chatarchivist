@@ -1,0 +1,28 @@
+created: 20170304102433909
+creator: Thomas Elmiger
+description: credits and license
+modified: 20231229092241714
+modifier: Thomas Elmiger
+tags: EditorCounter
+title: $:/plugins/telmiger/EditorCounter/license
+
+!! Credits
+
+Many thanks to Jed for his blueprint widget and demo site, originally on http://ooktech.com/jed/ExampleWikis/WordCount/ as well as to Skeeve who obviousliy contributed the original macro version Jed based his solution on.
+
+* http://ooktech.com/TiddlyWiki/
+* http://ooktech.com/TiddlyWiki/WordCount/
+
+//Powered by the fantastic TiddlyWiki community.//
+
+!! License
+
+//Editor Counter// is based on //WordCount// by OokTech LLC. Additional work Copyright (c) 2020–2023, Thomas Elmiger
+
+https://thomas-elmiger.ch 
+
+//Editor Counter// is published under the same BSD 3-Clause license as //WordCount://
+
+---
+
+{{$:/plugins/telmiger/EditorCounter/OokTech-WordCount/License}}

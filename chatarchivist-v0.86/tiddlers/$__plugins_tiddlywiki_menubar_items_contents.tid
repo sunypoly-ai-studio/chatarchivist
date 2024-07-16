@@ -1,0 +1,14 @@
+caption: Contents
+created: 20240621191434092
+description: Table of Contents
+is-dropdown: yes
+modified: 20240621191434092
+tags: $:/tags/MenuBar
+title: $:/plugins/tiddlywiki/menubar/items/contents
+type: text/vnd.tiddlywiki
+
+<div class="tc-table-of-contents">
+
+<$macrocall $name="toc-selective-expandable" tag={{$:/config/plugins/menubar/TableOfContents/Tag}}/>
+
+</div>
