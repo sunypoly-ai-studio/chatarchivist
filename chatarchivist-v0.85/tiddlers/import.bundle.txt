@@ -16861,4 +16861,3 @@ Chat_Archivist_Logo.png
 [[ChatGPT Conversation]]
 $:/plugins/tiddlywiki/markdown
 $:/plugins/tiddlywiki/dynannotate
-android-chrome-512x512.png

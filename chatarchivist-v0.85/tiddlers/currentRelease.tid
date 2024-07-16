@@ -1,7 +1,0 @@
-created: 20240715211906108
-modified: 20240715212312621
-tags: 
-title: currentRelease
-type: text/vnd.tiddlywiki
-
-<$set name="release" filter="[tag[ReleaseNotes]!sort[created]limit[1]split[.]nth[2]prepend[v0.]]"><<release>>
