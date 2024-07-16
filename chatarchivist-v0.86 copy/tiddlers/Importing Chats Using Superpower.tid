@@ -1,0 +1,19 @@
+created: 20240621191217239
+modified: 20240627140422808
+tags: 
+title: Importing Chats Using Superpower
+type: text/vnd.tiddlywiki
+
+!!To import your chats using the ChatGPT Superpower extension:
+
+[[Getting started with and using Superpower|https://www.toolify.ai/ai-news/stepbystep-guide-exporting-chatgpt-conversations-with-superpower-extension-533022]]
+
+ #The link above will tach the basics about Superpower. All that is needed to know is how to export conversations, so no need to read the whoke thing. Once you learn how, export your conversation(s) into a JSON file
+
+#Copy this [[python script|Python Script to Convert Conversations to Tiddlers Using JSON From Superpower Extension]] into your clipboard <$macrocall $name="copy-to-clipboard" src={{Python Script to Convert Conversations to Tiddlers Using JSON From Superpower Extension}}/>
+
+# Save file as ``chat2json.py`` in the same directory as conversations.json
+
+# Run the script to generate tiddlers-for-import.json. ``/usr/local/bin/python3 chat2json.py conversations.json tiddlers2import.json`` If you don't have Python installed on your computer, follow the instructions for downloading it [[here.|https://realpython.com/installing-python/]] 
+
+#  Import tiddlers2import.json into this tiddlywiki {{$:/core/ui/Buttons/import}} to create  one tiddler for each prompt, and one tiddler for each response, and one tiddler for each conversation

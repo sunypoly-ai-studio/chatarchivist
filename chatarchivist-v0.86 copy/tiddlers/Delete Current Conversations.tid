@@ -1,0 +1,24 @@
+created: 20240115031317912
+modified: 20240709143206817
+tags: TableOfContents
+title: Delete Current Conversations
+type: text/vnd.tiddlywiki
+
+<$set name="conversations" filter="[tag[chatgptconversation]count[]]">
+<$set name="messages" filter="[tag[chatgptmessage]count[]]">
+<$set name="prompts" filter="[author[user]count[]]">
+<$set name="responses" filter="[author[assistant]count[]]">
+<$set name="annotations" filter="[tag[Annotation]count[]]">
+
+
+!!Delete
+
+<$button tooltip="Delete all conversations">
+  <$action-deletetiddler $filter="[tag[chatgptmessage]] [tag[chatgptconversation]]"/>
+  Delete<br><<conversations>> conversations<br> <<messages>> messages<br><<prompts>> prompts<br> <<responses>> responses
+</$button>
+<$button tooltip="Delete all annotations">
+  <$action-deletetiddler $filter="[tag[Annotation]]"/>
+  Delete<br><<annotations>> annotations
+</$button>
+

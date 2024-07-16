@@ -1,0 +1,41 @@
+created: 20240715191636039
+modified: 20240715191641415
+tags: 
+title: storage
+type: text/vnd.tiddlywiki
+
+{
+	"model": "gpt-4o",
+	"messages": [
+		{
+			"role": "system",
+			"content": ""
+		}
+		<!-- Loop through the tiddlers tagged with this one to pick up all the messages in the conversation -->
+        <$vars conv_id={{API Tracker!!conv_id_count}}>
+		<$list filter="[all[shadows+tiddlers]conversation_id<conv_id>!is[draft]sort[created]]">
+			,
+			{
+				<!-- We use JSON stringify to escape the characters that can't be used directly in JSON -->
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "<$text text={{{ [<currentTiddler>get[text]jsonstringify[]] }}}/>"
+					}
+					<%if [<currentTiddler>get[image]else[]!match[]] %>
+						,
+						{
+							"type": "image_url",
+							"image_url": {
+								"url": "<$text text={{{ [[data:]] [<currentTiddler>get[image]get[type]] [[;base64,]] [<currentTiddler>get[image]get[text]jsonstringify[]] +[join[]] }}}/>"
+							}
+						}
+					<%endif%>
+				]
+				
+			}
+		</$list>
+        </$vars>
+	]
+}

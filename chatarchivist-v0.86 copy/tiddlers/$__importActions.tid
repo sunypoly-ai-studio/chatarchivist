@@ -1,0 +1,7 @@
+created: 20240617150704512
+modified: 20240617150824095
+tags: 
+title: $:/importActions
+
+<$action-sendmessage $message="tm-import-tiddlers" $param=<<browseTiddlers>>/>
+<$action-setfield $tiddler=<<browseTiddlers>> text=""/>

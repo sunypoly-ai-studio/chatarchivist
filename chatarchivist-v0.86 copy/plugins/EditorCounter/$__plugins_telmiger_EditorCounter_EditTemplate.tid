@@ -1,0 +1,59 @@
+created: 20170126185919666
+creator: Thomas Elmiger
+list-before: $:/core/ui/EditTemplate/type
+modified: 20231228181717401
+modifier: Thomas Elmiger
+tags: $:/tags/EditTemplate EditorCounter
+title: $:/plugins/telmiger/EditorCounter/EditTemplate
+
+<$let
+   color-tid="$:/plugins/telmiger/EditorCounter/settings/colors"
+   color0={{{ [<color-tid>getindex[c0]] }}}
+   color1={{{ [<color-tid>getindex[c1]] }}}
+   color2={{{ [<color-tid>getindex[c2]] }}}
+   color3={{{ [<color-tid>getindex[c3]] }}}
+   color4={{{ [<color-tid>getindex[c4]] }}}
+>
+<div class="te-editor-counter">
+<$reveal type="match" text="yes" state="$:/plugins/telmiger/EditorCounter/settings/characters">
+<$let
+   limit-tid="$:/plugins/telmiger/EditorCounter/settings/limits"
+   limit0={{{ [<limit-tid>getindex[l0]] }}}
+   limit1={{{ [<limit-tid>getindex[l1]] }}}
+   limit2={{{ [<limit-tid>getindex[l2]] }}}
+   limit3={{{ [<limit-tid>getindex[l3]] }}}
+   limit4={{{ [<limit-tid>getindex[l4]] }}}
+>
+<$editor-counter tiddler=<<currentTiddler>> colors=`$(color0)$:$(limit0)$,$(color1)$:$(limit1)$,$(color2)$:$(limit2)$,$(color3)$:$(limit3)$,$(color4)$:$(limit4)$`/> characters </$let></$reveal>
+<$reveal type="match" text="yes" state="$:/plugins/telmiger/EditorCounter/settings/autosave">
+<span class="tc-muted"><span class="tc-dirty-indicator">•</span> <$editor-counter mode=autosave savelimit={{$:/plugins/telmiger/EditorCounter/settings/autosave!!limit}}/> saved</span>
+</$reveal>
+<$reveal type="match" text="yes" state="$:/plugins/telmiger/EditorCounter/settings/characters"> &nbsp;&nbsp; 
+</$reveal>
+<$reveal type="match" text="yes" state="$:/plugins/telmiger/EditorCounter/settings/words">
+<$let
+   limit-tid="$:/plugins/telmiger/EditorCounter/settings/limits"
+   limit0={{{ [<limit-tid>getindex[wl0]] }}}
+   limit1={{{ [<limit-tid>getindex[wl1]] }}}
+   limit2={{{ [<limit-tid>getindex[wl2]] }}}
+   limit3={{{ [<limit-tid>getindex[wl3]] }}}
+   limit4={{{ [<limit-tid>getindex[wl4]] }}}
+>
+<$editor-counter mode=word colors=`$(color0)$:$(limit0)$,$(color1)$:$(limit1)$,$(color2)$:$(limit2)$,$(color3)$:$(limit3)$,$(color4)$:$(limit4)$`/> words &nbsp;&nbsp; 
+</$let>
+</$reveal>
+<$reveal type="match" text="yes" state="$:/plugins/telmiger/EditorCounter/settings/autosave-pause">
+<$checkbox tiddler="$:/plugins/telmiger/EditorCounter/settings/autosave" field="text" checked="yes" unchecked="no" default="no"> Autosave</$checkbox>
+<$reveal type="match" text="yes" state="$:/plugins/telmiger/EditorCounter/settings/autosave">
+ (uncheck to pause)
+</$reveal>
+</$reveal>
+</div>
+</$let>
+<style>
+.te-editor-counter { margin-top: -.25rem; margin-bottom: 0.75rem; }
+</style>
+<!--
+* Show the number of characters and/or words entered in edit mode.
+* Show the number of characters at last autosave (autosave at a character difference as defined in settings).
+-->

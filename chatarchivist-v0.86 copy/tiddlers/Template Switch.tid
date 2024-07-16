@@ -1,0 +1,6 @@
+created: 20240606171139896
+modified: 20240606171207120
+tags: 
+title: Template Switch
+
+<$macrocall $name="set-view-template"/>

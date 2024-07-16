@@ -1,0 +1,168 @@
+created: 20240610173958951
+modified: 20240620143611817
+tags: 
+title: stylesheet
+type: text/vnd.tiddlywiki
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  line-height: 1.6; 
+  margin: 0;
+  color: black;
+}
+body.tc-body {
+  background-color: #333232;
+}
+.scrollable-box {
+  max-height: 200px; 
+  overflow-y: auto;
+  border: 1px solid gray; 
+}
+.tc-droppable {
+  color: black;
+}
+.tc-sidebar-tabs {
+  display: inline-block;
+  background-color: grey;
+  color: black;
+  border-radius: 4px;
+  padding: 4px;
+}
+.tc-site-title {
+  display: inline-block;
+  color: #730c05;
+  background-color: grey;
+  border-radius: 8px;
+}
+.tc-tab-buttons {
+  display: inline-block;
+  color: #000;
+  padding: 2px 6px;
+  font-size: 14px;
+  margin: 4px;
+  align-items: center;
+}
+.tc-tab-buttons button:hover {
+  background-color: #d6d5d0;
+}
+.tc-tab-buttons button:active {
+  animation: blinkBackground 0.5s steps(1, end);
+}
+.tc-title, .tc-subtitle {
+  color: #730c05;
+}
+.tc-body {
+  background-color: grey;
+}
+.tc-tiddler-frame {
+  background-color: grey;
+}
+p {
+  color: black;
+}
+hr {
+  border-color: #730c05;
+}
+a:link { 
+  color: #730c05;
+  text-decoration: none;
+}
+a:visited { 
+  color: #730c05; 
+  text-decoration: none;
+}
+a:hover {
+  color: #f25252;
+  text-decoration: none;
+}
+button.tc-tag-label, span.tc-tag-label  {
+  background-color: #f25252;
+}
+.conversation-title {
+  font-weight: bold;
+  color: #000000;
+  background-color: grey;
+}
+@keyframes blinkBackground {
+  0%, 100% {
+    background-color: #ebe9e6;  
+  }
+  50% {
+    background-color: #d6d5d0;
+  }
+}
+.navigation_button {
+  color: black;
+  font-weight: 500;
+}
+.navigation_button button { 
+  background-color: #ebe9e6;
+  border: 1px solid #000;
+  color: #000;
+  padding: 2px 6px;
+  font-size: 14px;
+  line-height: 1;
+  margin: 2px;
+  border-radius: 12px;
+}
+.navigation_button button:hover {
+  background-color: #d6d5d0;
+}
+.navigation_button button:active {
+  animation: blinkBackground 0.5s steps(1, end);
+}
+.annotation_button button { 
+  background-color: #ebe9e6;
+  border: 1px solid #000;
+  color: #000;
+  padding: 2px 6px;
+  font-size: 14px;
+  line-height: 1;
+  margin: 2px;
+  border-radius: 12px;
+}
+.annotation_button button:hover {
+  background-color: #d6d5d0;
+}
+.annotation_button button:active {
+  animation: blinkBackground 0.5s steps(1, end);
+}
+.annotation {
+  background-color: #f25252;
+  border-radius: 4px;
+  margin: 4px;
+  padding-left: 4px;
+}
+.message_block {
+  background-color: white;
+  border-radius: 12px;
+  padding: 4px;
+}
+.message_information {
+  color: black;
+}
+.transclusion {
+  background-color: grey;
+}
+.tiddler-body {
+  background-color: grey;
+}
+.search-box {
+  display: inline-block;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+details summary {
+  color: #e3e2de;
+  background-color: #730c05;
+  border-radius: 10px;
+}
+details {
+  background-color: grey;
+  border-style: solid;
+  border-color: #333232;
+  border-width: 2px;
+  border-radius: 12px;
+}
+
