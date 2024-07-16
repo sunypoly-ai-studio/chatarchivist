@@ -1,0 +1,27 @@
+created: 20240716215206608
+modified: 20240716223334267
+tags: ReleaseNotes
+title: ChatArchivist0.86a
+type: text/vnd.tiddlywiki
+version: 0.86a
+
+Format:<br>
+
+# Updates in [[Release 0.86]]
+## //Modifications in [[ChatArchivist0.86a]]//
+<hr>
+
+# Updated wiki title to reflect current version
+## //Created [[Workflow connecting release notes with site title]]//
+## //Updated [[$:/SiteTitle]] to be {{$:/SiteTitle}}//
+# Added API system prompt manipulation per conversation, System prompt tiddler for the new current conversation is created on startup
+## //Didn't test. //
+#Added Two Story View, When clicked the menu bar button currently opens a second, empty story view
+## //When I clicked it into two story view the sidebar was in the way; suggest adding a close sidebar to the button that sets view to be TwoStory//
+## //Maybe Only allow two story when in a conversation? make it kind of like a template? auto load annotations in the 2nd window//
+<hr>
+Known bugs
+
+# System prompt will not generate per new conversation
+# API conversation is still one prompt behind
+

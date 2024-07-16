@@ -1,0 +1,15 @@
+created: 20240716213905421
+modified: 20240716223334267
+tags: 
+title: Workflow connecting release notes with site title
+type: text/vnd.tiddlywiki
+
+# goto most recent release notes; clone; manually update the tiddler title in correct format ``ChatArchivist 0.xx with the space`` and contents (text field)
+# after saving cloned and renamed tiddler check to see if version is reflected in $:/SiteTitle: {{$:/SiteTitle}}
+
+Changes:
+
+# Created [[ChatArchivistVersionTitle]]``{{{ [tag[ReleaseNotes]!sort[created]first[] }}}>
+``
+# set $:/SiteTitle to transcude [[ChatArchivistVersionTitle]]: {{$:/SiteTitle}}
+# Followed workflow above by cloning [[Release 0.86]] renaming [[ChatArchivist0.86a]] and modifying contents
