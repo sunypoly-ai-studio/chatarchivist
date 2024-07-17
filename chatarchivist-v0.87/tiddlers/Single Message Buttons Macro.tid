@@ -1,0 +1,49 @@
+created: 20240626142601761
+modified: 20240627140817124
+tags: $:/tags/Macro
+title: Single Message Buttons Macro
+type: text/vnd.tiddlywiki
+
+\define nextButton(title, conversation_index, next, last)
+<$vars conversation_index=$conversation_index$>
+<$list filter="[<conversation_index>compare:integer:lt<last>]">
+<$button tooltip="Next">Next (#$next$)
+<$action-setfield $tiddler="transcludeMessage" conversation_index=$next$ id=$title$/>
+<$action-setfield $tiddler=$title$ conversation_index={{{[<conversation_index>add[1]]}}}/>
+</$button>
+</$list>
+</$vars>
+\end
+
+\define gtNextButton(title, conversation_index, last)
+<$vars conversation_index=$conversation_index$>
+<$list filter="[<conversation_index>compare:integer:gteq<last>]">
+<$button tooltip="Next">Next (#$last$)
+<$action-setfield $tiddler="transcludeMessage" conversation_index=$last$ id=$title$/>
+<$action-setfield $tiddler=$title$ conversation_index=$last$/>
+</$button>
+</$list>
+</$vars>
+\end
+
+\define previousButton(title, conversation_index, previous)
+<$vars conversation_index=$conversation_index$>
+<$list filter="[<conversation_index>compare:integer:gt[1]]">
+<$button tooltip="Previous">Previous (#$previous$)
+<$action-setfield $tiddler="transcludeMessage" conversation_index=$previous$ id=$title$/>
+<$action-setfield $tiddler=$title$ conversation_index={{{[<conversation_index>add[-1]]}}}/>
+</$button>
+</$list>
+</$vars>
+\end
+
+\define ltPreviousButton(title, conversation_index)
+<$vars conversation_index=$conversation_index$>
+<$list filter="[<conversation_index>compare:integer:lteq[1]]">
+<$button tooltip="Previous">Previous (#1)
+<$action-setfield $tiddler="transcludeMessage" conversation_index="1" id=$title$/>
+<$action-setfield $tiddler=$title$ conversation_index="1"/>
+</$button>
+</$list>
+</$vars>
+\end

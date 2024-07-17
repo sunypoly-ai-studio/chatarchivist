@@ -1,0 +1,209 @@
+created: 20240708143516421
+modified: 20240717192005632
+tags: $:/tags/Macro
+title: API Macro
+type: text/vnd.tiddlywiki
+
+<!-- Adapted from https://github.com/tiddly-gittly/ai-actionstring/blob/c89738e68a28da96f27e2dac0cd2fb131582eec2/src/ai-actionstring/ActionStrings/Qwen.tid -->
+
+
+\procedure openaiTextGenerate(promptValue, system_prompt)
+
+  \procedure completion()
+    \import [subfilter{$:/core/config/GlobalImportFilter}]
+    <$action-log msg="In completion"/>
+    <!-- Success -->
+    <$list filter="[<status>compare:number:gteq[200]compare:number:lteq[299]]" variable="ignore">
+      <$action-log msg="Generated text" text={{{ [<data>jsonget[choices],[0],[message]] }}}/>
+      <!-- Save the generated text -->
+
+<$vars conv_id={{API Tracker!!conv_id_count}} msg_id={{API Tracker!!msg_id_count}} date=<<now YYYY0MM0DD0hh0mm0ss0XXX>>>
+<$set name="tzd" value={{{ [<date>add[40000000]] }}}>
+<$action-createtiddler 
+$basetitle=<<msg_id>>
+text={{{ [<data>jsonget[choices],[0],[message]] }}}
+conversation_id=<<conv_id>>
+message_id=<<msg_id>>
+author="assistant" 
+timestamp=<<tzd>>
+type="text/markdown"
+tags="chatgptmessage"/>
+<$action-setfield $tiddler="API Tracker" msg_id_count={{{[<msg_id>add[1]]}}}/>
+</$set>
+</$vars>
+
+    </$list>
+    <!-- Failure -->
+    <$list filter="[<status>compare:number:lt[200]] [<status>compare:number:gt[299]]" variable="ignore">
+      <$action-log msg="API request failed" status=<<status>> statusText=<<statusText>> error=<<error>>/>
+    </$list>
+  \end completion
+
+  \procedure request-url()
+  https://api.openai.com/v1/chat/completions
+  \end request-url
+
+  \procedure request-body()
+<$vars conv_id={{API Tracker!!conv_id_count}}>
+<% if [conversation_id<conv_id> %>
+{
+	"model": "gpt-4o",
+	"messages": [
+		{
+			"role": "system",
+			"content": "<<system_prompt>>"
+		}
+		<!-- Loop through the tiddlers tagged with this one to pick up all the messages in the conversation -->
+		<$list filter="[all[shadows+tiddlers]conversation_id<conv_id>!is[draft]sort[created]]">
+			,
+			{
+				<!-- We use JSON stringify to escape the characters that can't be used directly in JSON -->
+				"role": "<$text text={{{ [<currentTiddler>get[author]jsonstringify[]] }}}/>",
+				"content": [
+					{
+						"type": "text",
+						"text": "<$text text={{{ [<currentTiddler>get[text]jsonstringify[]] }}}/>"
+					}
+					<%if [<currentTiddler>get[image]else[]!match[]] %>
+						,
+						{
+							"type": "image_url",
+							"image_url": {
+								"url": "<$text text={{{ [[data:]] [<currentTiddler>get[image]get[type]] [[;base64,]] [<currentTiddler>get[image]get[text]jsonstringify[]] +[join[]] }}}/>"
+							}
+						}
+					<%endif%>
+				]
+				
+			}
+		</$list>
+	]
+}
+<% else %>
+{
+    "model": "gpt-40",
+    "messages": [
+      {
+        "role": "system",
+        "content": ""
+      },
+      {
+        "role": "user",
+        "content": "<<promptValue>>"
+      }
+    ]
+}
+<% endif %>
+</$vars>
+  \end request-body
+
+  <$wikify name="url" text=<<request-url>>>
+    <$wikify name="body" text=<<request-body>>>
+      <$let apikey={{$:/chatarchivist/OpenAIAPI/apiKey}}>
+        <$action-sendmessage
+          $message="tm-http-request"
+          url=<<url>>
+          method="POST"
+          header-Content-Type="application/json"
+          header-Authorization=`Bearer $(apikey)$`
+          body=<<body>>
+          bind-status="$:/chatarchivist/OpenAIAPI/status"
+          bind-progress="$:/chatarchivist/OpenAIAPI/progress"
+          oncompletion=<<completion>>
+        />
+      </$let>
+    </$wikify>
+  </$wikify>
+
+\end openaiTextGenerate
+
+
+\procedure archiveChat()
+
+  \procedure completion()
+    \import [subfilter{$:/core/config/GlobalImportFilter}]
+    <$action-log msg="In completion"/>
+    <!-- Success -->
+    <$list filter="[<status>compare:number:gteq[200]compare:number:lteq[299]]" variable="ignore">
+      <$action-log msg="Generated text" text={{{ [<data>jsonget[choices],[0],[message]] }}}/>
+      <!-- Save the generated text -->
+
+<$vars conv_id={{API Tracker!!conv_id_count}}>
+<$action-setfield $tiddler="API Tracker" generated_title={{{ [<data>jsonget[choices],[0],[message]] }}}/>
+<$action-createtiddler 
+$basetitle=<<conv_id>>
+conversation_title={{API Tracker!!generated_title}}
+conversation_index="1"
+chatgptelement="conversation"
+tags="chatgptconversation"/>
+<$action-setfield $tiddler="API Tracker" conv_id_count={{{[<conv_id>add[1]]}}} text="" generated_title=""/>
+</$vars>
+
+    </$list>
+    <!-- Failure -->
+    <$list filter="[<status>compare:number:lt[200]] [<status>compare:number:gt[299]]" variable="ignore">
+      <$action-log msg="API request failed" status=<<status>> statusText=<<statusText>> error=<<error>>/>
+    </$list>
+  \end completion
+
+  \procedure request-url()
+  https://api.openai.com/v1/chat/completions
+  \end request-url
+
+  \procedure request-body()
+   {
+	"model": "gpt-4o",
+	"messages": [
+		{
+			"role": "system",
+			"content": "You are to summarize the prompt in 6 words or less. Then you are to stylize your response as if it were a title."
+		}
+		<!-- Loop through the tiddlers tagged with this one to pick up all the messages in the conversation -->
+        <$vars conv_id={{API Tracker!!conv_id_count}}>
+		<$list filter="[all[shadows+tiddlers]conversation_id<conv_id>!is[draft]sort[created]]">
+			,
+			{
+				<!-- We use JSON stringify to escape the characters that can't be used directly in JSON -->
+				"role": "user",
+				"content": [
+					{
+						"type": "text",
+						"text": "<$text text={{{ [<currentTiddler>get[text]jsonstringify[]] }}}/>"
+					}
+					<%if [<currentTiddler>get[image]else[]!match[]] %>
+						,
+						{
+							"type": "image_url",
+							"image_url": {
+								"url": "<$text text={{{ [[data:]] [<currentTiddler>get[image]get[type]] [[;base64,]] [<currentTiddler>get[image]get[text]jsonstringify[]] +[join[]] }}}/>"
+							}
+						}
+					<%endif%>
+				]
+				
+			}
+		</$list>
+        </$vars>
+	]
+  }
+  \end request-body
+
+  <$wikify name="url" text=<<request-url>>>
+    <$wikify name="body" text=<<request-body>>>
+      <$let apikey={{$:/chatarchivist/OpenAIAPI/apiKey}}>
+        <$action-sendmessage
+          $message="tm-http-request"
+          url=<<url>>
+          method="POST"
+          header-Content-Type="application/json"
+          header-Authorization=`Bearer $(apikey)$`
+          body=<<body>>
+          bind-status="$:/chatarchivist/OpenAIAPI/status"
+          bind-progress="$:/chatarchivist/OpenAIAPI/progress"
+          oncompletion=<<completion>>
+        />
+      </$let>
+    </$wikify>
+  </$wikify>
+
+\end archiveChat

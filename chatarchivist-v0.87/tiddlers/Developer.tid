@@ -1,0 +1,24 @@
+chatarchivist: sidebar
+created: 20160412001419903
+modified: 20240628172823054
+tags: $:/tags/SideBar
+title: Developer
+type: text/vnd.tiddlywiki
+
+\define devRadioOn()
+<$action-setfield $tiddler="$:/core/ui/ViewTemplate/title" tags="$:/tags/ViewTemplate"/>
+<$action-setfield $tiddler="$:/core/ui/ViewTemplate/subtitle" tags="$:/tags/ViewTemplate"/>
+<$action-setfield $tiddler="$:/core/ui/ViewTemplate/tags" tags="$:/tags/ViewTemplate"/>
+\end
+
+\define devRadioOff()
+<$action-setfield $tiddler="$:/core/ui/ViewTemplate/title" tags=""/>
+<$action-setfield $tiddler="$:/core/ui/ViewTemplate/subtitle" tags=""/>
+<$action-setfield $tiddler="$:/core/ui/ViewTemplate/tags" tags=""/>
+\end
+
+<div class="navigation_button">
+Show developer tools:
+<$button actions=<<devRadioOn>>> On </$button>
+<$button actions=<<devRadioOff>>> Off </$button>
+</div>

@@ -1,0 +1,14 @@
+created: 20240716154246934
+modified: 20240717182317306
+tags: ReleaseNotes
+title: ChatArchivist 0.86
+type: text/vnd.tiddlywiki
+
+* Updated wiki title to reflect current version
+* Added API system prompt manipulation per conversation
+** System prompt tiddler for the new current conversation is created on startup
+*Added Two Story View
+** When clicked the menu bar button currently opens a second, empty story view
+* Known bugs
+** System prompt will not generate per new conversation
+** API conversation is still one prompt behind

@@ -1,0 +1,79 @@
+created: 20240621150530842
+modified: 20240709200840669
+tags: chatarchivist-template
+title: Full Conversation - Selected
+type: text/vnd.tiddlywiki
+
+<$list filter="[is[current]tag[chatgptconversation]]">
+<$vars conversation={{!!conversation_title}} conversation_index="1">
+
+<div class="conversation-title">
+<h1>{{!!conversation_title}}</h1>
+</div>
+ 
+<$list filter="[list[$:/chatarchivist/selected-messages]conversation_id<currentTiddler>]">
+
+<$macrocall $name="exportButton" 
+            exportFilter=<<currentTiddler>>
+            lingoBase="$:/language/Buttons/ExportTiddler/" 
+            baseFilename=<<currentTiddler>>/>
+
+<div class="navigation_button">
+<$button>
+Open all
+<$action-setfield $tiddler="$:/chatarchivist/detailsState" text="open"/>
+</$button>
+<$button>
+Close all
+<$action-setfield $tiddler="$:/chatarchivist/detailsState" text=""/>
+</$button>
+</div>
+
+<$details summary={{!!author}} state={{{$:/chatarchivist/detailsState}}}>
+
+<div class="annotation_button">
+<$macrocall $name="selectMessage" title={{!!title}}/>
+
+<$macrocall $name="annotate" message_id={{!!message_id}} message_title={{!!title}} conversation_id={{!!conversation_id}}/>
+</div>
+
+<div class="message_block">
+<$transclude mode="block"/>
+</div>
+<hr>
+
+<div class="show-message-info">
+<$macrocall $name="showMessageInfo" timestamp={{!!timestamp}} link={{!!title}}/><br>
+</div>
+
+<$list filter="[timestamp{!!timestamp}chatgptelement[]nsort[timestamp]nth{!!title}]">
+<$vars tiddler-title={{!!title}}>
+
+<!--
+<$details summary="Associate an image with this message">
+
+<$macrocall $name='image-picker' actions="
+<$action-setfield $tiddler='$:/_MyImage' $value=<<imageTitle>>/>"/>
+
+<$image source={{$:/_MyImage}} width="100"/>
+<br>
+<$button> Add {{$:/_MyImage}} to this <$link to={{!!title}}>prompt</$link>
+<$action-setfield $tiddler={{$:/_MyImage}} message={{!!title}} chatgptelement="added-image"/>
+</$button>
+
+</$details>
+</div>
+
+<$list filter="[chatgptelement[added-image]message{!!title}]">
+<div>
+<$image source=<<currentTiddler>> width="100"/>
+<br> <$button> Remove this <$link to=<<currentTiddler>>>image</$link> from this 
+<$link to=<<tiddler-title>>>prompt</$link>
+<$action-setfield message="" chatgptelement=""/>
+</$button>
+</div>
+</$list>
+</div>
+-->
+</$vars>
+</$list>
