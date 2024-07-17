@@ -1,0 +1,13 @@
+created: 20240610161225952
+modified: 20240610161248813
+tags: 
+title: Export Button
+
+<$button>
+   Export as Static HTML
+   <$action-setfield $tiddler="$:/StoryList" text="[!is[system]]" />
+   <$action-sendmessage $message="tm-export-tiddlers" 
+                       format="static"
+                       template="$:/core/templates/static.template.html"
+                       filename="my-static-export.html" />
+</$button>

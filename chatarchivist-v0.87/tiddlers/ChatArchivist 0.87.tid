@@ -1,0 +1,26 @@
+created: 20240717183535582
+modified: 20240717195941646
+tags: ReleaseNotes
+title: ChatArchivist 0.87
+type: text/vnd.tiddlywiki
+
+* Updates in [[ChatArchivist 0.87]]
+** //Modified from ChatArchivist 0.86a//
+<hr>
+
+# Updated wiki title to reflect current version
+## //Site title is transcluded from most recent tiddler tagged ReleaseNotes//
+## //Updated [[$:/SiteTitle]] to be {{$:/SiteTitle}}//
+#//System prompt now generates per conversation//
+#//Favicon was updated and can be found in [[$:/favicon.ico]]//
+<hr>
+''To be added''
+
+#Drop down box to select from previously written system prompts
+<hr>
+''Known bugs''
+
+# API conversation is still one prompt behind
+# Two story mode is covered by the sidebar on some machines
+# Current system prompt is deleted when it shouldn't be if all conversations are deleted
+

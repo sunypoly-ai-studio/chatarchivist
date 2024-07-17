@@ -1,0 +1,13 @@
+created: 20170608172531552
+modified: 20200414145004303
+title: $:/_sq/Stories/Templates/StoryToggleMenu
+type: text/vnd.tiddlywiki
+
+<div class="sq-twostoriesonly">
+<$reveal state="$:/config/_sq/Stories/story2" type="nomatch" text="no" default="no">
+<$button set="$:/config/_sq/Stories/story2" setTo="no" tooltip="" aria-label="" class="tc-btn-invisible tc-btn-storytwotoggle">{{$:/_sq/Stories/icons/bars-empty.svg}} </$button> Hide second pane
+</$reveal>
+</div>
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="no" default="no">
+<$button set="$:/config/_sq/Stories/story2" setTo="yes" tooltip="" aria-label="" class="tc-btn-invisible tc-btn-storytwotoggle tc-btn-storytwotoggle-bars">{{$:/_sq/Stories/icons/bars.svg}}</$button>  <span class="sq-stories-disabled">Show second pane</span>
+</$reveal>
