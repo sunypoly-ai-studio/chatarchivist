@@ -1,0 +1,12 @@
+created: 20240715155028837
+modified: 20240717182324633
+tags: ReleaseNotes
+title: ChatArchivist 0.85
+type: text/vnd.tiddlywiki
+
+* Added TiddlyWiki's [[Markdown|$:/plugins/tiddlywiki/markdown]] plugin to format OpenAI API responses
+* API now uses the current conversation context to give responses
+** Previously a "conversation" was one prompt and one response
+** ''Note:'' Conversations are still bugged, API is not reading first user prompt when it is sent
+* Added TiddlyWiki's [[Dynannotate|$:/plugins/tiddlywiki/dynannotate]] plugin to reformat how annotations are created and handled
+* Fixed bug where annotation container was showing `wheat` color when no annotation existed

@@ -1,0 +1,51 @@
+Template: tm
+conversation_index: 1
+created: 20240607193740480
+id: 1000000
+modified: 20240718184852975
+tags: chatarchivist-template
+title: transcludeMessage
+type: text/vnd.tiddlywiki
+
+<$vars index={{!!conversation_index}}>
+<$list filter="[tag[chatgptmessage]conversation_id{!!id}nsort[timestamp]nth<index>]">
+
+<div class="show-message-info">
+<$macrocall $name="showMessageInfo" timestamp={{!!timestamp}} link={{!!title}}/>
+<hr>
+</div>
+
+<div class="annotation_button">
+<$macrocall $name="selectMessage" title={{!!title}}/>
+
+<$macrocall $name="annotate" message_id={{!!message_id}} message_title={{!!title}} conversation_id={{!!conversation_id}}/>
+
+<div class="message_block">
+<$transclude mode="block"/>
+</div>
+
+<!--
+<$details summary="Associate an image with this message">
+
+<$macrocall $name='image-picker' actions="
+<$action-setfield $tiddler='$:/_MyImage' $value=<<imageTitle>>/>"/>
+
+<$image source={{$:/_MyImage}} width="100"/>
+<br>
+<$button> Add {{$:/_MyImage}} to this <$link to={{!!title}}>prompt</$link>
+<$action-setfield $tiddler={{$:/_MyImage}} message={{!!title}} chatgptelement="added-image"/>
+</$button>
+
+</$details>
+</div>
+
+<$list filter="[chatgptelement[added-image]message{!!title}]">
+<div>
+<$image source=<<currentTiddler>> width="100"/>
+<br> <$button> Remove this <$link to=<<currentTiddler>>>image</$link> from this 
+<$link to=<<tiddler-title>>>prompt</$link>
+<$action-setfield message="" chatgptelement=""/>
+</$button>
+</div>
+-->
+

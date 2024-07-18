@@ -1,0 +1,13 @@
+created: 20240718181844033
+modified: 20240718182410013
+tags: 
+title: API Key Setting
+type: text/vnd.tiddlywiki
+
+!! OpenAI API Key
+# Register for an account at https://platform.openai.com/
+#* Newly registered accounts can claim a small amount of credit, thereafter payment is needed
+#* Note that ~OpenAI run completely different payment systems for ~ChatGPT and the API platform. Even if you are already a subscriber to ~ChatGPT you will still need to pay for API usage after the initial free service
+# Visit https://platform.openai.com/api-keys to create a new secret API key
+# Copy and paste the value into the box below
+OpenAI API Key: <$password name="openai-secret-key"/>
