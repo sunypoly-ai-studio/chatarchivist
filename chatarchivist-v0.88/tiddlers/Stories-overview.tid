@@ -1,0 +1,59 @@
+created: 20170608100342738
+modified: 20200414170510501
+tags: tw-demo tw5 stories tw
+title: Stories-overview
+type: text/vnd.tiddlywiki
+
+\define if-two-stories(twoStoryText, twoStoryNoSidebarText, oneStoryText)
+<$reveal state="$:/state/story2" type="match" text="yes">
+$twoStoryText$
+<$reveal state="$:/state/sidebar" type="nomatch" text="yes" default="yes">
+$twoStoryNoSidebarText$
+</$reveal>
+</$reveal>
+<$reveal state="$:/state/story2" type="nomatch" text="yes">
+$oneStoryText$
+</$reveal>
+\end
+
+
+''use with care and backup your data first''
+
+! Install
+<$button class="tc-tag-label tc-btn-invisible" dragFilter="[prefix[$:/_sq/Stories]]  $:/core/ui/SideBar/Open $:/core/ui/Buttons/more-tiddler-actions $:/config/_sq/Stories/story2 $:/config/Tiddlers/TitleLinks  $:/themes/tiddlywiki/vanilla/options/sidebarlayout">Drag me to install</$button>
+
+!shadow tiddler overrides
+* $:/core/ui/SideBar/Open
+* $:/core/ui/Buttons/more-tiddler-actions
+
+!Recommended settings:
+* $:/config/Tiddlers/TitleLinks -> yes
+* $:/themes/tiddlywiki/vanilla/options/sidebarlayout -> fluid-fixed
+
+!sq tiddlers
+* $:/_sq/Stories/Templates/StoryTogglePageControl
+*$:/_sq/Stories/config/Settings
+*$:/_sq/Stories/config/twostorybreakpoint
+*$:/_sq/Stories/config/sidebaroverlaybreakpoint
+*$:/_sq/Stories/divertTiddlerMacro
+*$:/_sq/Stories/divertTiddlerEditMacro
+*$:/_sq/Stories/HistoriesList
+*$:/_sq/Stories/LinkKeybindings
+*$:/_sq/Stories/EditTiddlerHook
+*$:/_sq/Stories/CorePatch/ButtonDispatchMessage
+*$:/_sq/Stories/CorePatch/LinkHandleClick
+*$:/_sq/Stories/Stories.css
+*$:/_sq/Stories/StoriesList
+*$:/_sq/Stories/Story2HistoryList
+*$:/_sq/Stories/Story2StoryList
+*$:/_sq/Stories/Templates/RiverDropZone
+*$:/_sq/Stories/Templates/Story2Template
+*$:/_sq/Stories/Templates/StoryToggleMenu
+*$:/_sq/Stories/icons/divert-left.svg
+*$:/_sq/Stories/icons/divert-right.svg
+*$:/_sq/Stories/icons/bars.svg
+*$:/_sq/Stories/icons/bars-empty.svg
+*$:/_sq/Stories/config/openLinkDivert
+*$:/config/_sq/Stories/story2
+
+

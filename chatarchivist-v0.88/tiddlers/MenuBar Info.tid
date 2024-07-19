@@ -1,0 +1,10 @@
+created: 20240624175253222
+modified: 20240624185154579
+tags: $:/tags/TopRightBar
+title: MenuBar Info
+type: text/vnd.tiddlywiki
+
+<$button tooltip="Toggle showing/hiding message information like timestamps and links in your conversations">
+<i class="fas fa-info-circle"/>
+<$action-listops $tiddler="showMessageInfo" $field="message_info" $subfilter="+[toggle[on],[off]]" />
+</$button>

@@ -1,0 +1,41 @@
+created: 20240718162320347
+modified: 20240718194105249
+tags: ReleaseNotes
+title: ChatArchivist 0.88
+type: text/vnd.tiddlywiki
+
+* Updates in [[ChatArchivist 0.88]]
+<hr>
+
+# API conversation is no longer one prompt behind
+# ``Annotation`` tag is now ``chatgptannotation``
+# Updated [[Delete Current Conversations]]
+## UI is now more alerting
+## Current system prompt is no longer deleted
+# Added [[API Key Setting]] to [[Settings]]
+## Currently not functional
+## In the future, the [[password widget|https://tiddlywiki.com/#PasswordWidget]] will encrypt API keys
+# Updated [[select message macro|selectMessage]] so that the principle of provenance of archived objects is not violated
+## Selecting a message tags a hidden tiddler titled ``$:/chatarchivist/(message title)-selected`` to save the state of the checkbox
+## The hidden tiddler is deleted upon deselecting the message
+# Changed ``<% if [title[System-$(conv_id)$]]%>`` to ``<% if [title![System-$(conv_id)$]]%>`` in [[$:/chatarchivist/startup/OpenAIAPI/systemPrompt]]
+## This should eliminate the issue of multiple system prompts appearing on startup
+# OpenAI API models changed in [[API Macro]]
+## openaiTextGenerate() now uses ''gpt-4o-mini''
+## archiveChat() now uses ''gpt-3.5-turbo''
+# Removed all mention of Superpower-GPT browser extension
+
+<hr>
+''Scrapped Ideas''
+
+#Drop down box to select from previously written system prompts
+## //System prompts are now written per conversation, and saved to archived conversations//
+## //Use for pre-writing system prompts seems trivial, unnecessarily code-heavy, and creates poor UX//
+# Dynnannotate plugin removed
+## //Provides a functionality we have already created ourselves//
+## //Creates an ugly red highlight when using the global search bar//
+<hr>
+''Known bugs''
+
+# Two story mode is covered by the sidebar on some machines
+# OpenAI Import Python currently not working (should be fixed, needs to be tested)

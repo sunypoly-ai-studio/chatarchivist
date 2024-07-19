@@ -1,0 +1,26 @@
+created: 20170608171610013
+list-after: $:/core/ui/PageTemplate/story
+modified: 20200414145004305
+tags: $:/tags/PageTemplate
+title: $:/_sq/Stories/Templates/Story2Template
+type: text/vnd.tiddlywiki
+
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="yes" default="no" retain="yes" animate="no">
+
+<$navigator story="$:/_sq/Stories/Story2StoryList" history="$:/_sq/Stories/Story2HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<section class="tc-story-river tc-storytwo-river sq-story-rivertwo">
+<$scrollable class="sq-story-rivertwo-scrollable"  fallthrough="no">
+
+<$transclude tiddler="$:/_sq/Stories/Templates/RiverDropZone"/>
+
+<$list filter="[list[$:/_sq/Stories/Story2StoryList]]" history="$:/_sq/Stories/Story2HistoryList" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate"  storyview={{$:/view}}>
+<div>
+<$transclude/>
+</div>
+</$list>
+</$scrollable>
+</section>
+
+</$navigator>
+
+</$reveal>

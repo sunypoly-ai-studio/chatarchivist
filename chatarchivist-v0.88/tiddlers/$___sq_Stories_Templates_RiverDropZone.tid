@@ -1,0 +1,28 @@
+created: 20170609191118712
+list-before: $:/core/ui/PageTemplate/story
+modified: 20200414161510989
+tags: $:/tags/AboveStory
+title: $:/_sq/Stories/Templates/RiverDropZone
+type: text/vnd.tiddlywiki
+
+\define drop-actions()
+<$action-listops $tiddler=<<otherStoryList>> $subfilter="+[remove<actionTiddler>]"/> 
+<$action-navigate $to=<<actionTiddler>>/>
+\end
+<div class="sq-storydropzone-container sq-twostoriesonly">
+	<div class="sq-storydropzone-newtiddlerbutton  tc-page-controls">
+		<$transclude tiddler="$:/core/ui/Buttons/new-tiddler"/>
+	</div>
+	<div style="position: relative; " class="sq-storydropzone sq-twostoriesonly">
+		<$set name="otherStoryList"  filter="[enlist{$:/_sq/Stories/StoriesList!!list}] -[<tv-story-list>]" select="0">
+		<$droppable actions=<<drop-actions>>>
+			<div class="tc-droppable-placeholder">
+			&nbsp;
+			</div>
+			<div>
+				Drop link here to open
+			</div>
+		</$droppable>
+		</$set>
+	</div>
+</div>
