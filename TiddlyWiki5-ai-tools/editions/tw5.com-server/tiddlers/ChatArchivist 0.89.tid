@@ -1,0 +1,27 @@
+created: 20240719172348546
+modified: 20240722140709707
+tags: ReleaseNotes
+title: ChatArchivist 0.89
+type: text/vnd.tiddlywiki
+
+* Updates in [[ChatArchivist 0.89]]
+<hr>
+
+# ''ChatArchivist has been ported to TiddlyWiki 5.3.6-prerelease''
+## Allows for the [[ai-tools|$:/plugins/tiddlywiki/ai-tools]] plugin and collaboration with [[Jeremy|https://github.com/Jermolene/TiddlyWiki5/pull/8365]]
+# Temperature was added to OpenAI API call [[here|$:/plugins/tiddlywiki/ai-tools/servers/openai]]
+# [[MenuBar|$:/plugins/tiddlywiki/menubar]] plugin disabled to make room for [[LeftBar|$:/plugins/TWaddle/LeftBar]] plugin
+## MenuBar buttons are still currently visible on the wiki until this is determined as a permanent change
+# OpenAI import Python script has been updated, still needs testing
+
+<hr>
+''To be added''
+
+# A [[range widget|https://tiddlywiki.com/#RangeWidget]] to alter the temperature of API responses
+# User and Assistant toolbars on conversation prompts for ChatArchivist functions (select, annotate, etc.)
+
+<hr>
+''Known bugs''
+
+# Two story mode is covered by the sidebar on some machines
+##//Two story mode may be removed in future versions due to concerns with stability//

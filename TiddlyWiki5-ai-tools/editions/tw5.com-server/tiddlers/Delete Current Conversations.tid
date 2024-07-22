@@ -1,0 +1,30 @@
+created: 20240115031317912
+modified: 20240718181404429
+tags: TableOfContents
+title: Delete Current Conversations
+type: text/vnd.tiddlywiki
+
+<$vars conv_id={{API Tracker!!conv_id_count}}>
+<$set name="conversations" filter="[tag[chatgptconversation]count[]]">
+<$set name="messages" filter="[tag[chatgptmessage]!author[system]count[]]">
+<$set name="prompts" filter="[author[user]count[]]">
+<$set name="responses" filter="[author[assistant]count[]]">
+<$set name="system" value={{{ [author[system]count[]add[-1]] }}}>
+<$set name="annotations" filter="[tag[chatgptannotation]count[]]">
+
+<div style="display: flex; flex-direction: column; align-items: left; width: 100%;">
+    <div style="font-weight: bold; font-size: 20px; width: 320px; box-sizing: border-box; text-align: center;">
+      You currently have <<conversations>> conversation(s), <<messages>> total messages, <<prompts>> user prompts, <<responses>> assistant responses, <<system>> system prompt(s), and <<annotations>> message annotation(s)!
+<br><br>
+    <div style="text-align: center; font-size: 28px; width: 111%; box-sizing: border-box;">
+      <$button tooltip="Delete all conversations">
+        <$action-deletetiddler $filter="[tag[chatgptmessage]author[system]!conversation_id<conv_id>] [tag[chatgptmessage]author[user]] [tag[chatgptmessage]author[assistant]] [tag[chatgptconversation]]"/>
+        Delete<br>''ALL''<br>conversations
+      </$button>
+      <$button tooltip="Delete all annotations">
+        <$action-deletetiddler $filter="[tag[chatgptannotation]]"/>
+        Delete<br>''ALL''<br>annotations
+      </$button>
+    </div>
+</div>
+

@@ -1,0 +1,20 @@
+created: 20240719161121888
+modified: 20240719172146354
+tags: 
+title: $:/plugins/TWaddle/LeftBar/Menu
+type: text/vnd.tiddlywiki
+
+{{$:/plugins/tiddlywiki/menubar/items/search}}
+
+{{MenuBar Annotation}}
+
+{{MenuBar Select Message}}
+
+{{MenuBar Toggle Template}}
+
+
+{{MenuBar Info}} 
+
+{{$:/_sq/Stories/Templates/StoryTogglePageControl}}
+
+{{$:/core/ui/Buttons/import}}
