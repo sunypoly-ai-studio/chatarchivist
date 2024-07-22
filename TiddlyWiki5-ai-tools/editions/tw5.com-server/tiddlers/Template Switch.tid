@@ -1,0 +1,7 @@
+created: 20240606171139896
+modified: 20240719185433574
+tags: 
+title: Template Switch
+type: text/vnd.tiddlywiki
+
+<$macrocall $name="set-view-template"/>

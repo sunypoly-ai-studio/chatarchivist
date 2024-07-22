@@ -1,0 +1,22 @@
+created: 20240722140655193
+modified: 20240722140848282
+tags: ReleaseNotes
+title: ChatArchivist 0.90
+type: text/vnd.tiddlywiki
+
+* Updates in [[ChatArchivist 0.90]]
+<hr>
+
+# The [[ai-tools|$:/plugins/tiddlywiki/ai-tools]] plugin has been updated to its most current version
+
+<hr>
+''To be added''
+
+# A [[range widget|https://tiddlywiki.com/#RangeWidget]] to alter the temperature of API responses
+# User and Assistant toolbars on conversation prompts for ChatArchivist functions (select, annotate, etc.)
+
+<hr>
+''Known bugs''
+
+# Two story mode is covered by the sidebar on some machines
+##//Two story mode may be removed in future versions due to concerns with stability//

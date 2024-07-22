@@ -1,0 +1,9 @@
+dependents: 
+description: AI Tools for TiddlyWiki
+list: readme docs tools settings
+name: AI Tools
+plugin-type: plugin
+stability: STABILITY_1_EXPERIMENTAL
+title: $:/plugins/tiddlywiki/ai-tools
+type: application/json
+version: 5.3.6-prerelease
